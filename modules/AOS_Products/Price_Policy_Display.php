@@ -30,12 +30,14 @@ function display_price_policy($focus, $field, $value, $view)
         
         // Query to get price policies linked to this product
         $query = "SELECT p.id, p.name AS policy_name, a.id AS account_id, a.name AS account_name, 
-                         p.price, p.currency_id, p.date_modified 
+                         p.price, p.currency_id, p.date_modified, c.name AS currency_name, c.symbol AS currency_symbol
                   FROM sggt_price_policy p
                   INNER JOIN sggt_price_policy_aos_products_c rel 
                     ON p.id = rel.sggt_price_policy_aos_productssggt_price_policy_idb
                   LEFT JOIN accounts a 
                     ON p.account_id_c = a.id AND a.deleted = 0
+                  LEFT JOIN currencies c
+                    ON p.currency_id = c.id AND c.deleted = 0
                   WHERE rel.sggt_price_policy_aos_productsaos_products_ida = '{$product_id}' 
                     AND p.deleted = 0 
                     AND rel.deleted = 0
@@ -49,9 +51,10 @@ function display_price_policy($focus, $field, $value, $view)
         // Header row
         $html .= "<tr>";
         $html .= "<td width='5%' class='tabDetailViewDL' style='text-align: center; padding:5px;' scope='row'>#</td>";
-        $html .= "<td width='25%' class='tabDetailViewDL' style='text-align: left; padding:5px;' scope='row'>Tên chính sách</td>";
-        $html .= "<td width='25%' class='tabDetailViewDL' style='text-align: left; padding:5px;' scope='row'>Khách hàng / Đối tác</td>";
-        $html .= "<td width='20%' class='tabDetailViewDL' style='text-align: right; padding:5px;' scope='row'>Giá</td>";
+        $html .= "<td width='20%' class='tabDetailViewDL' style='text-align: left; padding:5px;' scope='row'>Tên chính sách</td>";
+        $html .= "<td width='20%' class='tabDetailViewDL' style='text-align: left; padding:5px;' scope='row'>Khách hàng / Đối tác</td>";
+        $html .= "<td width='15%' class='tabDetailViewDL' style='text-align: right; padding:5px;' scope='row'>Giá</td>";
+        $html .= "<td width='15%' class='tabDetailViewDL' style='text-align: left; padding:5px;' scope='row'>Mệnh giá</td>";
         $html .= "<td width='25%' class='tabDetailViewDL' style='text-align: left; padding:5px;' scope='row'>Ngày cập nhật</td>";
         $html .= "</tr>";
         
@@ -78,17 +81,24 @@ function display_price_policy($focus, $field, $value, $view)
                 $date_formatted = $timedate->to_display_date_time($row['date_modified']);
             }
             
+            // Get currency display
+            $currency_display = 'US Dollar'; // Default
+            if (!empty($row['currency_name'])) {
+                $currency_display = $row['currency_name'];
+            }
+            
             $html .= "<tr>";
             $html .= "<td class='tabDetailViewDF' style='text-align: center; padding:5px;'>{$row_count}</td>";
             $html .= "<td class='tabDetailViewDF' style='padding:5px;'>{$policy_link}</td>";
             $html .= "<td class='tabDetailViewDF' style='padding:5px;'>{$account_display}</td>";
             $html .= "<td class='tabDetailViewDF' style='text-align: right; padding:5px;'>{$price_formatted}</td>";
+            $html .= "<td class='tabDetailViewDF' style='padding:5px;'>{$currency_display}</td>";
             $html .= "<td class='tabDetailViewDF' style='padding:5px;'>{$date_formatted}</td>";
             $html .= "</tr>";
         }
         
         if ($row_count == 0) {
-            $html .= "<tr><td colspan='5' class='tabDetailViewDF' style='padding: 15px; text-align: center; color: #888;'>Không có chính sách giá nào</td></tr>";
+            $html .= "<tr><td colspan='6' class='tabDetailViewDF' style='padding: 15px; text-align: center; color: #888;'>Không có chính sách giá nào</td></tr>";
         }
         
         $html .= "</table>";
