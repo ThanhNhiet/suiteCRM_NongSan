@@ -31,6 +31,10 @@ array (
         array (
           'file' => 'modules/AOS_Products/js/products.js',
         ),
+        1 => 
+        array (
+          'file' => 'custom/modules/AOS_Products/price_policy_edit.js',
+        ),
       ),
       'useTabs' => false,
       'tabDefs' => 
@@ -129,6 +133,15 @@ array (
           array (
             'name' => 'product_image',
             'customCode' => '{$PRODUCT_IMAGE}',
+          ),
+        ),
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'price_policy_lines',
+            'label' => 'LBL_PRICE_POLICY_LINES',
+            'customCode' => '{$PRICE_POLICY_LINES_HTML}',
           ),
         ),
       ),
