@@ -61,9 +61,9 @@ $manifest = array (
   'icon' => '',
   'is_uninstallable' => true,
   'name' => 'sggt_nongsan',
-  'published_date' => '2026-02-26 02:10:50',
+  'published_date' => '2026-02-27 02:07:28',
   'type' => 'module',
-  'version' => 1772071850,
+  'version' => 1772158048,
   'remove_tables' => 'prompt',
 );
 

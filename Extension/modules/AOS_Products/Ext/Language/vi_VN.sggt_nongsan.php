@@ -5,3 +5,7 @@ $mod_strings['lbl_panel_chinh_sach_gia'] = 'CHÍNH SÁCH GIÁ';
 $mod_strings['LBL_PANEL_CHINH_SACH_GIA'] = 'Chính sách giá';
 $mod_strings['LBL_PRICE_POLICY_DISPLAY'] = 'Danh sách chính sách giá';
 $mod_strings['LBL_PRICE_POLICY_LINES'] = 'Chính sách giá';
+$mod_strings['lbl_panel_thanh_phan_combo'] = 'THÀNH PHẦN COMBO';
+$mod_strings['LBL_PANEL_THANH_PHAN_COMBO'] = 'Thành phần Combo';
+$mod_strings['LBL_COMBO_COMPONENT_DISPLAY'] = 'Danh sách thành phần Combo';
+$mod_strings['LBL_COMBO_COMPONENT_LINES'] = 'Thành phần Combo';
