@@ -35,6 +35,10 @@ array (
         array (
           'file' => 'custom/modules/AOS_Products/price_policy_edit.js',
         ),
+        2 => 
+        array (
+          'file' => 'custom/modules/AOS_Products/combo_component_edit.js',
+        ),
       ),
       'useTabs' => false,
       'tabDefs' => 
@@ -97,6 +101,20 @@ array (
         array (
           0 => 
           array (
+            'name' => 'discount_type_c',
+            'studio' => 'visible',
+            'label' => 'LBL_DISCOUNT_TYPE',
+          ),
+          1 => 
+          array (
+            'name' => 'discount_value_c',
+            'label' => 'LBL_DISCOUNT_VALUE',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
             'name' => 'cost',
             'label' => 'LBL_COST',
           ),
@@ -106,7 +124,7 @@ array (
             'label' => 'LBL_PRICE',
           ),
         ),
-        5 => 
+        6 => 
         array (
           0 => 
           array (
@@ -119,7 +137,7 @@ array (
             'label' => 'LBL_URL',
           ),
         ),
-        6 => 
+        7 => 
         array (
           0 => 
           array (
@@ -127,7 +145,7 @@ array (
             'label' => 'LBL_DESCRIPTION',
           ),
         ),
-        7 => 
+        8 => 
         array (
           0 => 
           array (
@@ -135,13 +153,30 @@ array (
             'customCode' => '{$PRODUCT_IMAGE}',
           ),
         ),
-        8 => 
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'is_combo_c',
+            'label' => 'LBL_IS_COMBO',
+          ),
+        ),
+        10 => 
         array (
           0 => 
           array (
             'name' => 'price_policy_lines',
             'label' => 'LBL_PRICE_POLICY_LINES',
             'customCode' => '{$PRICE_POLICY_LINES_HTML}',
+          ),
+        ),
+        11 => 
+        array (
+          0 => 
+          array (
+            'name' => 'combo_component_lines',
+            'label' => 'LBL_COMBO_COMPONENT_LINES',
+            'customCode' => '{$COMBO_COMPONENT_HTML}',
           ),
         ),
       ),
