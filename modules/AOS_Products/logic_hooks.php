@@ -10,3 +10,11 @@ $hook_array['after_save'][] = array(
     'AOS_Products_PricePolicyHook',
     'savePricePolicyLines'
 );
+
+$hook_array['after_save'][] = array(
+    2,
+    'Save Combo Component Lines',
+    'custom/modules/AOS_Products/ComboComponentHook.php',
+    'AOS_Products_ComboComponentHook',
+    'saveComboComponents'
+);
