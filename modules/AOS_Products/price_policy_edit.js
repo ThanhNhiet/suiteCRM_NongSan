@@ -250,14 +250,14 @@ function openAccountPopup(lineNum) {
                    '&form_submit=false' +
                    '&request_data=' + encodeURIComponent(encoded_request_data);
     
-    // Open popup window
-    open_popup(
+    // Open popup window and save reference
+    window.last_popup = open_popup(
         'Accounts',           // module
         600,                  // width
         400,                  // height  
         '',                   // initial_filter
         false,                // show_tabs
-        false,                // close_on_select
+        true,                 // close_on_select - AUTO CLOSE
         popupRequestData      // request_data
     );
 }
@@ -282,10 +282,27 @@ window.set_pp_account_return = function(popupReplyData) {
         }
     }
     
-    // Close the popup window
-    if (window.opener && !window.opener.closed) {
-        window.close();
-    }
+    // Close the popup - callback runs in parent window, need to close the popup window
+    // Try multiple methods to close the popup
+    setTimeout(function() {
+        // Method 1: Close via global popup window reference
+        if (typeof window.last_popup !== 'undefined' && window.last_popup && !window.last_popup.closed) {
+            window.last_popup.close();
+        }
+        
+        // Method 2: Try to find popup by name
+        try {
+            var popupWin = window.open('', 'sugar_popup', '');
+            if (popupWin && !popupWin.closed) {
+                popupWin.close();
+            }
+        } catch(e) {}
+        
+        // Method 3: Close any window with name containing 'popup'
+        if (typeof SUGAR !== 'undefined' && SUGAR.util && SUGAR.util.closeActivityPanel) {
+            SUGAR.util.closeActivityPanel.hide();
+        }
+    }, 150);
 };
 
 /**
